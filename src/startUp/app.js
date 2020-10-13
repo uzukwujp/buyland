@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const { json } = require('body-parser');
-const winston = require('winston');
+const {error} = require('../middlewares/error');
 const{customerRouter} = require('../customers/route');
 
 class App {
@@ -23,10 +23,7 @@ class App {
 
         this.app.use('/api/customers', customerRouter);
 
-        this.app.use((err, req, res) => {
-            winston.log("info" , err.message, err);
-            res.status(500).json({message: 'oops! something happened'});
-        })
+        this.app.use(error)
     }
 }
 

@@ -40,3 +40,10 @@ exports.signIn = async (req, res) => {
     const token = await customer.generateToken();
     res.status(200).json({token, customer});
 };
+
+exports.logOut = async (req,res) => {
+    req.customer.tokens = req.customer.tokens.filter((token) => token.token !== req.token);
+    
+    await req.customer.save();
+    res.send()
+}
