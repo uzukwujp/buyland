@@ -1,0 +1,4 @@
+{"app":{
+    "db_url": "mongodb://localhost/buyland",
+    "name": "buyland"
+}}
