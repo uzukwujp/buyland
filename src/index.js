@@ -1,3 +1,4 @@
+ require('express-async-errors');
 const App = require('./startUp/app');
 const Db = require('./startUp/db');
 const winstonConfiguration = require('./startUp/winston_config');

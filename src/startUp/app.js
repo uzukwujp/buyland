@@ -3,6 +3,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const { json } = require('body-parser');
 const winston = require('winston');
+const{customerRouter} = require('../customers/route');
 
 class App {
     app = express()
@@ -20,9 +21,7 @@ class App {
 
         this.app.use(json());
 
-        this.app.use((req, res) => {
-            res.send('Welcome!')
-        });
+        this.app.use('/api/customers', customerRouter);
 
         this.app.use((err, req, res) => {
             winston.log("info" , err.message, err);
