@@ -1,5 +1,6 @@
 const Customer = require('./model');
 const {signUpValidation} = require('./inputValidations/signup');
+const {signInValidation} = require('./inputValidations/signin');
 const bcrypt = require('bcrypt');
 
 exports.signUp = async (req, res ) => {
@@ -22,5 +23,20 @@ exports.signUp = async (req, res ) => {
     const token = await customer.generateToken()
 
     res.status(201).json({customer, message: 'registration successful', token});
+};
 
-}
+exports.signIn = async (req, res) => {
+    const { error} = signInValidation(req.body);
+    if(error) return res.status(400).json({message: error.details[0].message});
+
+    const customer = await Customer.findOne({email: req.body.email});
+
+    if(!customer)return res.status(400).json({message: 'Invalid email or password'});
+
+    const validPassword = await bcrypt.compare(req.body.password, customer.password);
+
+    if(!validPassword) return res.status(400).json({message: 'Invalid email or password'});
+
+    const token = await customer.generateToken();
+    res.status(200).json({token, customer});
+};
