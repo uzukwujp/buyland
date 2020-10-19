@@ -8,6 +8,7 @@
     "dev": "cross-env NODE_ENV=development  nodemon ./src/index.js",
     "start": "cross-env NODE_ENV=production pm2 start ./src/index.js"
   },
+  "engines": {"node": "12.18.4"},
   "keywords": [],
   "author": "",
   "license": "ISC",
