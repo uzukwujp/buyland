@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
+const compression = require('compression');
 const { json } = require('body-parser');
 const {error} = require('../middlewares/error');
 const{customerRouter} = require('../customers/route');
@@ -16,6 +17,8 @@ class App {
 
     setMiddleWare(){
         this.app.use(helmet());
+
+        this.app.use(compression());
 
         this.app.use(cors());
 
