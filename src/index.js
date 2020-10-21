@@ -1,4 +1,4 @@
- require('express-async-errors');
+require('express-async-errors');
 const App = require('./startUp/app');
 const Db = require('./startUp/db');
 const winstonConfiguration = require('./startUp/winston_config');
@@ -6,17 +6,17 @@ const winstonConfiguration = require('./startUp/winston_config');
 const config = require('config');
 
 
-winstonConfiguration();
+//winstonConfiguration();
 
-if(!config.get('jwt_secret')){
+if (!config.get('jwt_secret')) {
     throw new Error('jwt_secret is not defined');
 };
 
 const main = async () => {
-    try{
+    try {
         await Db.connection();
         new App();
-    }catch(err){
+    } catch (err) {
         throw err
     }
 };
