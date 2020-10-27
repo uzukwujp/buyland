@@ -6,9 +6,9 @@ const winstonConfiguration = require('./startUp/winston_config');
 const config = require('config');
 
 
-//winstonConfiguration();
+winstonConfiguration();
 
-if (!config.get('jwt_secret')) {
+if (!config.get('app.jwt_secret')) {
     throw new Error('jwt_secret is not defined');
 };
 
