@@ -1,4 +1,4 @@
 {"app":{
-    "db_url": "mongodb://localhost/buyland",
+    "db_url": "mongodb+srv://uzukwujp:jaypee1990@cluster0.o6m82.mongodb.net/land?retryWrites=true&w=majority",
     "name": "buyland"
 }}
