@@ -4,6 +4,7 @@ const Db = require('./startUp/db');
 const winstonConfiguration = require('./startUp/winston_config');
 
 const config = require('config');
+console.log(process.env.NODE_ENV);
 
 
 winstonConfiguration();
