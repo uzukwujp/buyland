@@ -1,4 +1,0 @@
-{"app":{"jwt_secret": "app_secret", 
-        "db_ur": "mongo_url"
-       }        
-}

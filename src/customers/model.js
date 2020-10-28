@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 const jwt = require('jsonwebtoken');
-const config = require('config');
 
 const customerSchema = new mongoose.Schema({
     firstName: {type: String, required: true, lowercase: true},
@@ -17,7 +16,7 @@ customerSchema.plugin(uniqueValidator);
 customerSchema.methods.generateToken =  async function (){
     try{
     customer = this;
-    const token =  jwt.sign({_id: customer._id.toString()},config.get('jwt_secret'), {expiresIn: '24h'});
+    const token =  jwt.sign({_id: customer._id.toString()},process.env.jwt_secret, {expiresIn: '24h'});
 
     customer.tokens.push({token});
     await customer.save()

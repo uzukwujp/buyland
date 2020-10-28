@@ -1,4 +1,4 @@
-const config = require('config');
+
 const jwt = require('jsonwebtoken');
 const Customer = require('../customers/model');
 
@@ -8,7 +8,7 @@ exports.auth = async (req,res, next) => {
 
     const token = req.header('Authorization').split(' ')[1];
 
-    const validToken = await jwt.verify(token, config.get('jwt_secret'));
+    const validToken = await jwt.verify(token, process.env.jwt_secret);
 
     const customer = await Customer.findOne({_id: validToken._id, 'tokens.token': token});
 

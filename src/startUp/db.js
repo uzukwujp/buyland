@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const config = require('config');
 const winston = require('winston');
 
 class Db {
@@ -8,8 +7,13 @@ class Db {
     }
     static async connection(){
         try{
-            await mongoose.connect(config.get('app.db_url'), { useNewUrlParser: true,  useUnifiedTopology: true  });
+            if(process.env.NODE_ENV === "production"){
+            await mongoose.connect(process.env.prod_mongo_url, { useNewUrlParser: true,  useUnifiedTopology: true });
             winston.log('info', 'connection to database successful')
+            }else{
+                await mongoose.connect(process.env.dev_mongo_url, {useNewUrlParser: true,  useUnifiedTopology: true});
+                winston.log('info', 'connection to database successful')
+            }
         }catch(err){
             throw err;
         }
