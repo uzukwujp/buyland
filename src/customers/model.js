@@ -8,6 +8,7 @@ const customerSchema = new mongoose.Schema({
     email: {type: String, required: true},
     password: {type: String, required: true},
     phoneNumber: {type: Number, required: true},
+    isAdmin: {type: Boolean, default:false},
     tokens: [{token : {type: String, required: true}}]
 });
 

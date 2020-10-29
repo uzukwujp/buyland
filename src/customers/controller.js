@@ -4,6 +4,7 @@ const {signInValidation} = require('./inputValidations/signin');
 const bcrypt = require('bcrypt');
 
 exports.signUp = async (req, res ) => {
+    
     const {error} = signUpValidation(req.body);
     if(error){
         return res.status(400).json({message: error.details[0].message});
@@ -16,7 +17,8 @@ exports.signUp = async (req, res ) => {
         lastName: req.body.lastName.toLowerCase(),
         password: hash,
         phoneNumber: Number(req.body.phoneNumber),
-        email: req.body.email
+        email: req.body.email,
+        isAdmin: req.body.isAdmin
     });
     await customer.save();
 

@@ -5,6 +5,7 @@ const schema = Joi.object({
     lastName: Joi.string().required(),
     phoneNumber: Joi.string().required(),
     password: Joi.string().required(),
+    isAdmin: Joi.boolean(),
     email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } })
     .required()
 });
